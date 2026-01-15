@@ -11,10 +11,10 @@
 
     <style>
         :root {
-            --bg-color: #111111;
+            --bg-color: #0f0f0f;
             --text-color: #ffffff;
-            --main-color: #ff5722; /* البرتقالي */
-            --glass-nav: rgba(0, 0, 0, 0.95);
+            --main-color: #ff5722;
+            --glass-nav: rgba(15, 15, 15, 0.9);
         }
 
         * {
@@ -50,13 +50,15 @@
             justify-content: space-between;
             padding: 20px 10%;
             background: var(--glass-nav);
-            border-bottom: 1px solid #222;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .logo {
             font-size: 28px;
             font-weight: 800;
             color: var(--text-color);
+            letter-spacing: 1px;
         }
         .logo span { color: var(--main-color); }
 
@@ -77,11 +79,11 @@
             right: 30px;
             background: var(--main-color);
             color: white;
-            padding: 10px 20px;
+            padding: 10px 25px;
             border-radius: 50px;
             cursor: pointer;
             z-index: 9999;
-            box-shadow: 0 0 15px rgba(255, 87, 34, 0.5);
+            box-shadow: 0 0 20px rgba(255, 87, 34, 0.4);
             font-weight: bold;
             border: 2px solid transparent;
             transition: 0.3s;
@@ -90,12 +92,12 @@
             background: transparent;
             border-color: var(--main-color);
             color: var(--main-color);
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         body.rtl .lang-btn { right: auto; left: 30px; }
 
         section {
-            padding: 100px 10% 50px;
+            padding: 120px 10% 50px;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -104,7 +106,7 @@
         .home {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 5rem;
+            gap: 4rem;
             align-items: center;
         }
         body.rtl .home { direction: rtl; } 
@@ -112,70 +114,79 @@
         .home-img {
             position: relative;
             text-align: center;
+            order: 2;
         }
+        body.ltr .home-img { order: 2; }
+        body.rtl .home-img { order: 2; } 
         
         .home-img img {
-            width: 80%;
-            max-width: 400px;
+            width: 85%;
+            max-width: 420px;
             border-radius: 20px;
             position: relative;
             z-index: 2;
-            border: 2px solid var(--main-color);
-            box-shadow: 0 0 25px rgba(255, 87, 34, 0.3);
+            border: 2px solid rgba(255, 87, 34, 0.5);
+            box-shadow: 0 0 40px rgba(255, 87, 34, 0.2);
+            transition: 0.5s;
         }
+        .home-img img:hover { transform: scale(1.02); }
 
         .circle-glow {
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 350px; height: 350px;
+            width: 400px; height: 400px;
             background: var(--main-color);
             border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.4;
+            filter: blur(80px);
+            opacity: 0.25;
             z-index: 1;
         }
 
+        .home-text { order: 1; }
+
         .home-text h1 {
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 10px;
+            line-height: 1.1;
+            margin-bottom: 15px;
         }
         .home-text h1 span { color: var(--main-color); }
 
         .home-text h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #ddd;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+            color: #e0e0e0;
         }
 
         .typing-text {
             font-size: 1.1rem;
-            color: #aaa;
+            color: #b0b0b0;
             line-height: 1.8;
-            margin-bottom: 30px;
-            min-height: 100px;
-            border-right: 2px solid var(--main-color);
-            padding-right: 5px;
-            display: inline-block;
+            margin-bottom: 35px;
+            min-height: 110px;
+            border-left: 3px solid var(--main-color);
+            padding-left: 15px;
+            display: block;
         }
-        body.rtl .typing-text { border-right: none; border-left: 2px solid var(--main-color); padding-left: 5px; }
+        body.rtl .typing-text { border-left: none; border-right: 3px solid var(--main-color); padding-right: 15px; padding-left: 0; }
 
         .btn-box { display: flex; gap: 20px; }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 12px 35px;
             background: var(--main-color);
-            border-radius: 30px;
+            border-radius: 50px;
             color: #fff;
             font-weight: 600;
             transition: 0.3s;
-            box-shadow: 0 0 10px var(--main-color);
+            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
             cursor: pointer;
         }
         .btn:hover {
+            transform: translateY(-3px);
             background: transparent;
             color: var(--main-color);
             border: 2px solid var(--main-color);
@@ -188,39 +199,43 @@
         }
         .btn-outline:hover { background: var(--main-color); color: white; }
 
-        .heading { text-align: center; font-size: 3rem; margin-bottom: 50px; }
+        .heading { text-align: center; font-size: 3rem; margin-bottom: 60px; font-weight: 800; }
         .heading span { color: var(--main-color); }
 
         .projects-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
             width: 100%;
         }
 
         .project-box {
-            background: #1e1e1e;
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid #333;
+            background: #161616;
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid #2a2a2a;
             transition: 0.4s;
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         .project-box:hover {
             transform: translateY(-10px);
             border-color: var(--main-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .project-box h3 { font-size: 1.5rem; margin-bottom: 10px; color: white; }
-        .project-box p { color: #aaa; font-size: 0.9rem; margin-bottom: 15px; }
+        .project-box h3 { font-size: 1.6rem; margin-bottom: 12px; color: white; }
+        .project-box p { color: #aaa; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; }
 
-        @media (max-width: 900px) {
-            .home { grid-template-columns: 1fr; text-align: center; }
-            .home-img { margin-bottom: 40px; }
-            header { padding: 15px 5%; }
-            .navbar a { margin: 0 10px; font-size: 0.8rem; }
-            .lang-btn { bottom: 20px; right: 20px; padding: 8px 15px; }
-            body.rtl .lang-btn { left: 20px; right: auto; }
+        @media (max-width: 991px) {
+            .home { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+            .home-img { order: 1; margin-bottom: 20px; }
+            .home-text { order: 2; }
+            .home-img img { width: 70%; }
+            .circle-glow { width: 300px; height: 300px; }
+            .typing-text { border: none; padding: 0; }
             .btn-box { justify-content: center; }
+            header { padding: 15px 5%; }
         }
     </style>
 </head>
@@ -239,14 +254,9 @@
     </header>
 
     <section class="home" id="home">
-        <div class="home-img">
-            <div class="circle-glow"></div>
-            <img src="https://i.ibb.co/nNsr0rn8/Profile-jpg.jpg" alt="Abdulaziz">
-        </div>
-
         <div class="home-text">
-            <h1 data-key="hero_title">About <span>Me</span></h1>
-            <h3 data-key="hero_role">Web Developer & <span style="color: var(--main-color);">Web Designer</span></h3>
+            <h1 data-key="hero_title">I'm <span>El-Gizawy</span></h1>
+            <h3 data-key="hero_role">Web Developer & <span style="color: var(--main-color);">Student</span></h3>
             
             <p class="typing-text" id="typing-target"></p>
             
@@ -255,29 +265,34 @@
                 <a href="#contact" class="btn btn-outline" data-key="btn_contact">Contact Me</a>
             </div>
         </div>
+
+        <div class="home-img">
+            <div class="circle-glow"></div>
+            <img src="https://i.ibb.co/nNsr0rn8/Profile-jpg.jpg" alt="Abdulaziz El-Gizawy">
+        </div>
     </section>
 
     <section id="projects" style="flex-direction: column; align-items: normal;">
-        <h2 class="heading" data-key="proj_title">Latest <span>Projects</span></h2>
+        <h2 class="heading" data-key="proj_title">My <span>Projects</span></h2>
         
         <div class="projects-container">
             <div class="project-box">
-                <h3 data-key="p1_title">🚀 Full Mark Platform</h3>
-                <p data-key="p1_desc">My first big project: An educational platform for high school students. Designed & Developed by me.</p>
+                <h3 data-key="p1_title"> Full Mark Platform</h3>
+                <p data-key="p1_desc">An educational platform I built for high school students.</p>
                 <a href="https://fulll-mark.vercel.app/" target="_blank" class="btn" data-key="btn_visit">Visit Website</a>
             </div>
             
             <div class="project-box">
-                <h3 data-key="p2_title">💻 Portfolio Design</h3>
-                <p data-key="p2_desc">A modern personal portfolio website featuring smooth animations and bilingual support.</p>
-                <a href="#" class="btn btn-outline" data-key="btn_details">View Details</a>
+                <h3 data-key="p2_title">💻 My Portfolio</h3>
+                <p data-key="p2_desc">The website you are currently viewing. I designed it to introduce myself and my work.</p>
+                <a href="#" class="btn btn-outline" data-key="btn_details">Details</a>
             </div>
         </div>
     </section>
 
     <section id="contact" style="flex-direction: column; justify-content: center; text-align: center; min-height: 50vh;">
         <h2 class="heading" data-key="contact_title">Contact <span>Me</span></h2>
-        <p style="margin-bottom: 30px; color: #aaa;" data-key="contact_desc">Feel free to reach out for any inquiries.</p>
+        <p style="margin-bottom: 30px; color: #aaa;" data-key="contact_desc">You can reach me via:</p>
         
         <div class="btn-box" style="justify-content: center;">
             <a href="https://wa.me/201090747536" target="_blank" class="btn" style="background-color: #25D366; border-color: #25D366; color: #fff;">WhatsApp</a>
@@ -290,28 +305,30 @@
             en: {
                 btn_lang: "عربي",
                 nav_home: "Home", nav_about: "About", nav_projects: "Projects", nav_contact: "Contact",
-                hero_title: "About <span>Me</span>",
-                hero_role: "Web Developer & <span style='color: #ff5722;'>Web Designer</span>",
-                type_text: "Hello! I am Abdulaziz Khaled (El-Gizawy). I am 18 years old, a High School Student. I specialize in designing and building modern, responsive websites.",
+                hero_title: "I'm <span>El-Gizawy</span>",
+                hero_role: "Web Developer & <span style='color: #ff5722;'>Student</span>",
+                // Simple English Bio
+                type_text: "I am Abdulaziz Khaled (El-Gizawy), a High School Student. I created the 'Full Mark' educational platform and built this portfolio to share my projects.",
                 btn_projects: "My Projects", btn_contact: "Contact Me",
-                proj_title: "Latest <span>Projects</span>",
-                p1_title: "🚀 Full Mark Platform", p1_desc: "My first startup: An educational platform for high school students. Designed & Developed by me.",
-                p2_title: "💻 Portfolio Design", p2_desc: "A modern personal portfolio website featuring smooth animations and bilingual support.",
-                btn_visit: "Visit Website", btn_details: "View Details",
-                contact_title: "Contact <span>Me</span>", contact_desc: "Feel free to reach out for any inquiries."
+                proj_title: "My <span>Projects</span>",
+                p1_title: " Full Mark Platform", p1_desc: "An educational platform I built for high school students.",
+                p2_title: "💻 My Portfolio", p2_desc: "The website you are currently viewing. I designed it to introduce myself and my work.",
+                btn_visit: "Visit Website", btn_details: "Details",
+                contact_title: "Contact <span>Me</span>", contact_desc: "You can reach me via:"
             },
             ar: {
                 btn_lang: "English",
-                nav_home: "الرئيسية", nav_about: "من أنا", nav_projects: "مشاريعي", nav_contact: "تواصل معي",
-                hero_title: "من <span>أنا؟</span>",
-                hero_role: "مبرمج و <span style='color: #ff5722;'>مصمم مواقع</span>",
-                type_text: "بين المذاكرة والكود.. أنا الجيزاوي. عمري ١٨ سنة، وهدفي هو تبسيط العلم من خلال التكنولوجيا، وتصميم مواقع عصرية تخدم المستخدمين.",
-                btn_projects: "أعمالي", btn_contact: "تواصل معي",
-                proj_title: "أحدث <span>المشاريع</span>",
-                p1_title: "🚀 منصة Full Mark", p1_desc: "أول مشاريعي: منصة تعليمية متكاملة لطلاب الثانوية العامة. قمت بتصميمها وبرمجتها بالكامل.",
-                p2_title: "💻 تصميم بورتفوليو", p2_desc: "تصميم موقع شخصي عصري (Portfolio) يدعم اللغة العربية والإنجليزية مع تأثيرات بصرية جذابة.",
+                nav_home: "الرئيسية", nav_about: "عني", nav_projects: "مشاريعي", nav_contact: "تواصل معي",
+                hero_title: "أنا <span>الجيزاوي</span>",
+                hero_role: "مطور مواقع & <span style='color: #ff5722;'>طالب</span>",
+                // Simple Arabic Bio
+                type_text: "أنا عبد العزيز خالد (الجيزاوي)، طالب في الثانوية العامة. قمت بإنشاء منصة 'Full Mark' التعليمية، وصممت هذا الموقع (البورتفوليو) للتعريف بنفسي وبأعمالي.",
+                btn_projects: "مشاريعي", btn_contact: "تواصل معي",
+                proj_title: "أهم <span>المشاريع</span>",
+                p1_title: " منصة Full Mark", p1_desc: "منصة تعليمية قمت بإنشائها لطلاب الثانوية العامة.",
+                p2_title: "💻 البورتفوليو الشخصي", p2_desc: "الموقع الذي تتصفحه الآن، قمت بتصميمه للتعريف بنفسي وبما أنجزته.",
                 btn_visit: "زيارة الموقع", btn_details: "التفاصيل",
-                contact_title: "تواصل <span>معي</span>", contact_desc: "لا تتردد في التواصل معي لأي استفسار."
+                contact_title: "تواصل <span>معي</span>", contact_desc: "يمكنك التواصل معي عن طريق:"
             }
         };
 
@@ -357,7 +374,7 @@
                 } else {
                     clearInterval(typeInterval);
                 }
-            }, 50);
+            }, 40); 
         }
 
         window.onload = function() {
