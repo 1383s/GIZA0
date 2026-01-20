@@ -7,14 +7,16 @@
     <link rel="icon" href="https://i.ibb.co/nNsr0rn8/Profile-jpg.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
+        /* الألوان والمتغيرات الأساسية */
         :root {
             --bg-color: #0f0f0f;
             --text-color: #ffffff;
             --main-color: #ff5722;
-            --glass-nav: rgba(15, 15, 15, 0.9);
+            --glass-nav: rgba(15, 15, 15, 0.95);
+            --box-bg: #1a1a1a;
         }
 
         * {
@@ -23,7 +25,8 @@
             box-sizing: border-box;
             text-decoration: none;
             list-style: none;
-            scroll-behavior: smooth;
+            outline: none;
+            border: none;
         }
 
         body {
@@ -34,11 +37,13 @@
             transition: 0.3s;
         }
 
+        /* تنسيق خاص للغة العربية */
         body.rtl {
             direction: rtl;
             font-family: 'Cairo', sans-serif;
         }
 
+        /* الهيدر (القائمة العلوية) */
         header {
             position: fixed;
             width: 100%;
@@ -48,194 +53,164 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 20px 10%;
+            padding: 22px 10%;
             background: var(--glass-nav);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .logo {
-            font-size: 28px;
-            font-weight: 800;
+            font-size: 26px;
+            font-weight: 700;
             color: var(--text-color);
-            letter-spacing: 1px;
         }
         .logo span { color: var(--main-color); }
 
         .navbar { display: flex; }
         .navbar a {
-            color: var(--text-color);
+            color: #ccc;
             font-size: 1rem;
             font-weight: 500;
             margin: 0 20px;
             transition: 0.3s;
-            position: relative;
         }
-        .navbar a:hover, .navbar a.active { color: var(--main-color); }
+        .navbar a:hover { color: var(--main-color); }
 
+        /* زر تغيير اللغة العائم */
         .lang-btn {
             position: fixed;
             bottom: 30px;
             right: 30px;
             background: var(--main-color);
             color: white;
-            padding: 10px 25px;
-            border-radius: 50px;
+            padding: 10px 20px;
+            border-radius: 30px;
             cursor: pointer;
             z-index: 9999;
-            box-shadow: 0 0 20px rgba(255, 87, 34, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
             font-weight: bold;
-            border: 2px solid transparent;
-            transition: 0.3s;
+            font-family: sans-serif;
+            transition: transform 0.3s;
         }
-        .lang-btn:hover {
-            background: transparent;
-            border-color: var(--main-color);
-            color: var(--main-color);
-            transform: scale(1.05);
-        }
+        .lang-btn:hover { transform: scale(1.1); }
         body.rtl .lang-btn { right: auto; left: 30px; }
 
+        /* الأقسام العامة */
         section {
-            padding: 120px 10% 50px;
+            padding: 100px 10% 80px;
             min-height: 100vh;
             display: flex;
             align-items: center;
         }
 
+        /* قسم الرئيسية (Home) */
         .home {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 5rem;
             align-items: center;
         }
-        body.rtl .home { direction: rtl; } 
 
+        /* الصورة الشخصية */
         .home-img {
-            position: relative;
             text-align: center;
-            order: 2;
+            position: relative;
         }
-        body.ltr .home-img { order: 2; }
-        body.rtl .home-img { order: 2; } 
         
         .home-img img {
-            width: 85%;
-            max-width: 420px;
+            width: 100%;
+            max-width: 400px;
             border-radius: 20px;
-            position: relative;
-            z-index: 2;
-            border: 2px solid rgba(255, 87, 34, 0.5);
-            box-shadow: 0 0 40px rgba(255, 87, 34, 0.2);
+            box-shadow: 0 0 30px rgba(255, 87, 34, 0.15);
+            border: 2px solid rgba(255, 87, 34, 0.3);
             transition: 0.5s;
         }
-        .home-img img:hover { transform: scale(1.02); }
+        .home-img img:hover { transform: translateY(-10px); }
 
-        .circle-glow {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px; height: 400px;
-            background: var(--main-color);
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.25;
-            z-index: 1;
-        }
-
-        .home-text { order: 1; }
-
+        /* النصوص */
         .home-text h1 {
-            font-size: 3.8rem;
-            font-weight: 800;
-            line-height: 1.1;
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
             margin-bottom: 15px;
         }
         .home-text h1 span { color: var(--main-color); }
 
         .home-text h3 {
-            font-size: 1.6rem;
-            margin-bottom: 25px;
+            font-size: 1.5rem;
             font-weight: 600;
-            color: #e0e0e0;
+            margin-bottom: 20px;
+            color: #eee;
         }
 
+        /* تأثير الكتابة */
         .typing-text {
             font-size: 1.1rem;
-            color: #b0b0b0;
+            color: #bbb;
             line-height: 1.8;
-            margin-bottom: 35px;
-            min-height: 110px;
-            border-left: 3px solid var(--main-color);
-            padding-left: 15px;
+            margin-bottom: 30px;
+            min-height: 100px; /* عشان الموقع ميرقصش لما الكلام يتكتب */
             display: block;
         }
-        body.rtl .typing-text { border-left: none; border-right: 3px solid var(--main-color); padding-right: 15px; padding-left: 0; }
 
-        .btn-box { display: flex; gap: 20px; }
-
+        /* الأزرار */
+        .btn-box { display: flex; gap: 15px; }
         .btn {
             display: inline-block;
-            padding: 12px 35px;
+            padding: 12px 30px;
             background: var(--main-color);
-            border-radius: 50px;
+            border-radius: 8px;
             color: #fff;
             font-weight: 600;
             transition: 0.3s;
-            box-shadow: 0 5px 15px rgba(255, 87, 34, 0.3);
             cursor: pointer;
         }
-        .btn:hover {
-            transform: translateY(-3px);
-            background: transparent;
-            color: var(--main-color);
-            border: 2px solid var(--main-color);
-            box-shadow: none;
-        }
+        .btn:hover { background: #e64a19; transform: translateY(-3px); }
+        
         .btn-outline {
             background: transparent;
-            border: 2px solid var(--main-color);
+            border: 1px solid var(--main-color);
             color: var(--main-color);
         }
-        .btn-outline:hover { background: var(--main-color); color: white; }
+        .btn-outline:hover { background: var(--main-color); color: #fff; }
 
-        .heading { text-align: center; font-size: 3rem; margin-bottom: 60px; font-weight: 800; }
+        /* العناوين للأقسام */
+        .heading { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-weight: 700; }
         .heading span { color: var(--main-color); }
 
+        /* شبكة المشاريع */
         .projects-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             width: 100%;
         }
 
         .project-box {
-            background: #161616;
-            border-radius: 20px;
+            background: var(--box-bg);
+            border-radius: 15px;
             padding: 30px;
-            border: 1px solid #2a2a2a;
+            border: 1px solid #333;
             transition: 0.4s;
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
         .project-box:hover {
-            transform: translateY(-10px);
             border-color: var(--main-color);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
         }
-        .project-box h3 { font-size: 1.6rem; margin-bottom: 12px; color: white; }
-        .project-box p { color: #aaa; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.6; }
+        .project-box h3 { margin-bottom: 15px; color: white; }
+        .project-box p { color: #999; font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; }
 
+        /* الموبايل Responsive */
         @media (max-width: 991px) {
-            .home { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
-            .home-img { order: 1; margin-bottom: 20px; }
-            .home-text { order: 2; }
-            .home-img img { width: 70%; }
-            .circle-glow { width: 300px; height: 300px; }
-            .typing-text { border: none; padding: 0; }
-            .btn-box { justify-content: center; }
             header { padding: 15px 5%; }
+            section { padding: 100px 5% 50px; }
+            .home { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+            .home-img { order: 1; margin-bottom: 20px; } /* الصورة الأول في الموبايل */
+            .home-text { order: 2; }
+            .home-text h1 { font-size: 2.5rem; }
+            .btn-box { justify-content: center; }
+            .home-img img { max-width: 280px; }
         }
     </style>
 </head>
@@ -247,7 +222,6 @@
         <a href="#" class="logo">El-Gizawy<span>.</span></a>
         <nav class="navbar">
             <a href="#home" data-key="nav_home">Home</a>
-            <a href="#about" data-key="nav_about">About</a>
             <a href="#projects" data-key="nav_projects">Projects</a>
             <a href="#contact" data-key="nav_contact">Contact</a>
         </nav>
@@ -255,7 +229,7 @@
 
     <section class="home" id="home">
         <div class="home-text">
-            <h1 data-key="hero_title">I'm <span>El-Gizawy</span></h1>
+            <h1 data-key="hero_title">Hi, I'm <span>El-Gizawy</span></h1>
             <h3 data-key="hero_role">Web Developer & <span style="color: var(--main-color);">Student</span></h3>
             
             <p class="typing-text" id="typing-target"></p>
@@ -267,68 +241,67 @@
         </div>
 
         <div class="home-img">
-            <div class="circle-glow"></div>
             <img src="https://i.ibb.co/nNsr0rn8/Profile-jpg.jpg" alt="Abdulaziz El-Gizawy">
         </div>
     </section>
 
-    <section id="projects" style="flex-direction: column; align-items: normal;">
+    <section id="projects" style="flex-direction: column;">
         <h2 class="heading" data-key="proj_title">My <span>Projects</span></h2>
         
         <div class="projects-container">
             <div class="project-box">
-                <h3 data-key="p1_title"> Full Mark Platform</h3>
-                <p data-key="p1_desc">An educational platform I built for high school students.</p>
+                <h3 data-key="p1_title">Full Mark Platform</h3>
+                <p data-key="p1_desc">An educational platform I built to help high school students study effectively.</p>
                 <a href="https://fulll-mark.vercel.app/" target="_blank" class="btn" data-key="btn_visit">Visit Website</a>
             </div>
             
             <div class="project-box">
-                <h3 data-key="p2_title">💻 My Portfolio</h3>
-                <p data-key="p2_desc">The website you are currently viewing. I designed it to introduce myself and my work.</p>
+                <h3 data-key="p2_title">My Portfolio</h3>
+                <p data-key="p2_desc">This website! I designed it to introduce myself and showcase my skills simply.</p>
                 <a href="#" class="btn btn-outline" data-key="btn_details">Details</a>
             </div>
         </div>
     </section>
 
-    <section id="contact" style="flex-direction: column; justify-content: center; text-align: center; min-height: 50vh;">
+    <section id="contact" style="flex-direction: column; justify-content: center; min-height: 50vh;">
         <h2 class="heading" data-key="contact_title">Contact <span>Me</span></h2>
-        <p style="margin-bottom: 30px; color: #aaa;" data-key="contact_desc">You can reach me via:</p>
         
         <div class="btn-box" style="justify-content: center;">
-            <a href="https://wa.me/201090747536" target="_blank" class="btn" style="background-color: #25D366; border-color: #25D366; color: #fff;">WhatsApp</a>
-            <a href="https://t.me/elgizawy9" target="_blank" class="btn" style="background-color: #229ED9; border-color: #229ED9; color: #fff;">Telegram</a>
+            <a href="https://wa.me/201090747536" target="_blank" class="btn" style="background-color: #25D366;">WhatsApp</a>
+            <a href="https://t.me/elgizawy9" target="_blank" class="btn" style="background-color: #229ED9;">Telegram</a>
         </div>
     </section>
 
     <script>
+        // هنا النصوص البسيطة اللي اتفقنا عليها
         const translations = {
             en: {
                 btn_lang: "عربي",
-                nav_home: "Home", nav_about: "About", nav_projects: "Projects", nav_contact: "Contact",
-                hero_title: "I'm <span>El-Gizawy</span>",
+                nav_home: "Home", nav_projects: "Projects", nav_contact: "Contact",
+                hero_title: "Hi, I'm <span>El-Gizawy</span>",
                 hero_role: "Web Developer & <span style='color: #ff5722;'>Student</span>",
-                // Simple English Bio
-                type_text: "I am Abdulaziz Khaled (El-Gizawy), a High School Student. I created the 'Full Mark' educational platform and built this portfolio to share my projects.",
+                // النص الانجليزي البسيط
+                type_text: "I am Abdulaziz Khaled, a High School Student. I created 'Full Mark' platform and built this portfolio to share my work simply.",
                 btn_projects: "My Projects", btn_contact: "Contact Me",
                 proj_title: "My <span>Projects</span>",
-                p1_title: " Full Mark Platform", p1_desc: "An educational platform I built for high school students.",
-                p2_title: "💻 My Portfolio", p2_desc: "The website you are currently viewing. I designed it to introduce myself and my work.",
-                btn_visit: "Visit Website", btn_details: "Details",
-                contact_title: "Contact <span>Me</span>", contact_desc: "You can reach me via:"
+                p1_title: "Full Mark Platform", p1_desc: "An educational platform I built to help high school students study effectively.",
+                p2_title: "My Portfolio", p2_desc: "This website! I designed it to introduce myself and showcase my skills simply.",
+                btn_visit: "Visit", btn_details: "Details",
+                contact_title: "Contact <span>Me</span>"
             },
             ar: {
                 btn_lang: "English",
-                nav_home: "الرئيسية", nav_about: "عني", nav_projects: "مشاريعي", nav_contact: "تواصل معي",
-                hero_title: "أنا <span>الجيزاوي</span>",
+                nav_home: "الرئيسية", nav_projects: "مشاريعي", nav_contact: "تواصل معي",
+                hero_title: "أهلاً، أنا <span>الجيزاوي</span>",
                 hero_role: "مطور مواقع & <span style='color: #ff5722;'>طالب</span>",
-                // Simple Arabic Bio
-                type_text: "أنا عبد العزيز خالد (الجيزاوي)، طالب في الثانوية العامة. قمت بإنشاء منصة 'Full Mark' التعليمية، وصممت هذا الموقع (البورتفوليو) للتعريف بنفسي وبأعمالي.",
+                // النص العربي البسيط (الخيار المتواضع)
+                type_text: "أنا عبد العزيز خالد، طالب في الثانوية العامة. قمت ببرمجة منصة 'Full Mark' التعليمية، وصممت هذا الموقع لأشارك أعمالي معكم.",
                 btn_projects: "مشاريعي", btn_contact: "تواصل معي",
                 proj_title: "أهم <span>المشاريع</span>",
-                p1_title: " منصة Full Mark", p1_desc: "منصة تعليمية قمت بإنشائها لطلاب الثانوية العامة.",
-                p2_title: "💻 البورتفوليو الشخصي", p2_desc: "الموقع الذي تتصفحه الآن، قمت بتصميمه للتعريف بنفسي وبما أنجزته.",
+                p1_title: "منصة Full Mark", p1_desc: "منصة تعليمية قمت بإنشائها لمساعدة طلاب الثانوية العامة.",
+                p2_title: "الموقع الشخصي", p2_desc: "الموقع اللي بتتصفحه دلوقتي، صممته عشان أعرفكم بيا وبشغلي ببساطة.",
                 btn_visit: "زيارة الموقع", btn_details: "التفاصيل",
-                contact_title: "تواصل <span>معي</span>", contact_desc: "يمكنك التواصل معي عن طريق:"
+                contact_title: "تواصل <span>معي</span>"
             }
         };
 
@@ -338,10 +311,10 @@
 
         function toggleLanguage() {
             currentLang = currentLang === 'en' ? 'ar' : 'en';
-            const elements = document.querySelectorAll('[data-key]');
             const body = document.body;
             const langBtn = document.querySelector('.lang-btn');
 
+            // تغيير اتجاه الصفحة
             if (currentLang === 'ar') {
                 body.classList.remove('ltr');
                 body.classList.add('rtl');
@@ -352,13 +325,15 @@
                 langBtn.textContent = translations.en.btn_lang;
             }
 
-            elements.forEach(el => {
+            // تحديث النصوص
+            document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (translations[currentLang][key]) {
                     el.innerHTML = translations[currentLang][key];
                 }
             });
 
+            // إعادة تشغيل الكتابة
             startTyping(translations[currentLang].type_text);
         }
 
@@ -366,7 +341,6 @@
             clearInterval(typeInterval);
             typingElement.textContent = "";
             let i = 0;
-            
             typeInterval = setInterval(() => {
                 if (i < text.length) {
                     typingElement.textContent += text.charAt(i);
@@ -374,9 +348,10 @@
                 } else {
                     clearInterval(typeInterval);
                 }
-            }, 40); 
+            }, 30); // سرعة الكتابة
         }
 
+        // عند تحميل الصفحة
         window.onload = function() {
             startTyping(translations.en.type_text);
         };
