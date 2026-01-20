@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* الألوان والمتغيرات الأساسية */
+        /* إعدادات الألوان والتنسيق العام */
         :root {
             --bg-color: #0f0f0f;
             --text-color: #ffffff;
@@ -43,7 +43,7 @@
             font-family: 'Cairo', sans-serif;
         }
 
-        /* الهيدر (القائمة العلوية) */
+        /* القائمة العلوية */
         header {
             position: fixed;
             width: 100%;
@@ -76,7 +76,7 @@
         }
         .navbar a:hover { color: var(--main-color); }
 
-        /* زر تغيير اللغة العائم */
+        /* زر اللغة العائم */
         .lang-btn {
             position: fixed;
             bottom: 30px;
@@ -95,7 +95,7 @@
         .lang-btn:hover { transform: scale(1.1); }
         body.rtl .lang-btn { right: auto; left: 30px; }
 
-        /* الأقسام العامة */
+        /* تنسيق الأقسام */
         section {
             padding: 100px 10% 80px;
             min-height: 100vh;
@@ -103,7 +103,7 @@
             align-items: center;
         }
 
-        /* قسم الرئيسية (Home) */
+        /* الصفحة الرئيسية */
         .home {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -111,7 +111,6 @@
             align-items: center;
         }
 
-        /* الصورة الشخصية */
         .home-img {
             text-align: center;
             position: relative;
@@ -127,7 +126,6 @@
         }
         .home-img img:hover { transform: translateY(-10px); }
 
-        /* النصوص */
         .home-text h1 {
             font-size: 3.5rem;
             font-weight: 700;
@@ -143,13 +141,12 @@
             color: #eee;
         }
 
-        /* تأثير الكتابة */
         .typing-text {
             font-size: 1.1rem;
             color: #bbb;
             line-height: 1.8;
             margin-bottom: 30px;
-            min-height: 100px; /* عشان الموقع ميرقصش لما الكلام يتكتب */
+            min-height: 100px;
             display: block;
         }
 
@@ -174,11 +171,10 @@
         }
         .btn-outline:hover { background: var(--main-color); color: #fff; }
 
-        /* العناوين للأقسام */
+        /* قسم المشاريع */
         .heading { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-weight: 700; }
         .heading span { color: var(--main-color); }
 
-        /* شبكة المشاريع */
         .projects-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -193,20 +189,23 @@
             border: 1px solid #333;
             transition: 0.4s;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
         .project-box:hover {
             border-color: var(--main-color);
             transform: translateY(-5px);
         }
         .project-box h3 { margin-bottom: 15px; color: white; }
-        .project-box p { color: #999; font-size: 0.9rem; margin-bottom: 20px; line-height: 1.6; }
+        .project-box p { color: #999; font-size: 0.9rem; margin-bottom: 25px; line-height: 1.6; }
 
         /* الموبايل Responsive */
         @media (max-width: 991px) {
             header { padding: 15px 5%; }
             section { padding: 100px 5% 50px; }
             .home { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-            .home-img { order: 1; margin-bottom: 20px; } /* الصورة الأول في الموبايل */
+            .home-img { order: 1; margin-bottom: 20px; }
             .home-text { order: 2; }
             .home-text h1 { font-size: 2.5rem; }
             .btn-box { justify-content: center; }
@@ -254,6 +253,12 @@
                 <p data-key="p1_desc">An educational platform I built to help high school students study effectively.</p>
                 <a href="https://fulll-mark.vercel.app/" target="_blank" class="btn" data-key="btn_visit">Visit Website</a>
             </div>
+
+            <div class="project-box">
+                <h3 data-key="p3_title">❄️ Dahab AC Co.</h3>
+                <p data-key="p3_desc">A corporate website for an air conditioning and refrigeration company.</p>
+                <a href="https://dahab-site.vercel.app/" target="_blank" class="btn" data-key="btn_visit">Visit Website</a>
+            </div>
             
             <div class="project-box">
                 <h3 data-key="p2_title">My Portfolio</h3>
@@ -273,20 +278,28 @@
     </section>
 
     <script>
-        // هنا النصوص البسيطة اللي اتفقنا عليها
         const translations = {
             en: {
                 btn_lang: "عربي",
                 nav_home: "Home", nav_projects: "Projects", nav_contact: "Contact",
                 hero_title: "Hi, I'm <span>El-Gizawy</span>",
                 hero_role: "Web Developer & <span style='color: #ff5722;'>Student</span>",
-                // النص الانجليزي البسيط
                 type_text: "I am Abdulaziz Khaled, a High School Student. I created 'Full Mark' platform and built this portfolio to share my work simply.",
                 btn_projects: "My Projects", btn_contact: "Contact Me",
+                
+                // المشاريع
                 proj_title: "My <span>Projects</span>",
-                p1_title: "Full Mark Platform", p1_desc: "An educational platform I built to help high school students study effectively.",
-                p2_title: "My Portfolio", p2_desc: "This website! I designed it to introduce myself and showcase my skills simply.",
-                btn_visit: "Visit", btn_details: "Details",
+                btn_visit: "Visit Website", btn_details: "Details",
+                
+                p1_title: "Full Mark Platform", 
+                p1_desc: "An educational platform I built to help high school students study effectively.",
+                
+                p2_title: "My Portfolio", 
+                p2_desc: "This website! I designed it to introduce myself and showcase my skills simply.",
+
+                p3_title: "❄️ Dahab AC Co.",
+                p3_desc: "A responsive website I developed for an AC company to showcase their services.",
+
                 contact_title: "Contact <span>Me</span>"
             },
             ar: {
@@ -294,13 +307,22 @@
                 nav_home: "الرئيسية", nav_projects: "مشاريعي", nav_contact: "تواصل معي",
                 hero_title: "أهلاً، أنا <span>الجيزاوي</span>",
                 hero_role: "مطور مواقع & <span style='color: #ff5722;'>طالب</span>",
-                // النص العربي البسيط (الخيار المتواضع)
                 type_text: "أنا عبد العزيز خالد، طالب في الثانوية العامة. قمت ببرمجة منصة 'Full Mark' التعليمية، وصممت هذا الموقع لأشارك أعمالي معكم.",
                 btn_projects: "مشاريعي", btn_contact: "تواصل معي",
+                
+                // المشاريع
                 proj_title: "أهم <span>المشاريع</span>",
-                p1_title: "منصة Full Mark", p1_desc: "منصة تعليمية قمت بإنشائها لمساعدة طلاب الثانوية العامة.",
-                p2_title: "الموقع الشخصي", p2_desc: "الموقع اللي بتتصفحه دلوقتي، صممته عشان أعرفكم بيا وبشغلي ببساطة.",
                 btn_visit: "زيارة الموقع", btn_details: "التفاصيل",
+
+                p1_title: "منصة Full Mark", 
+                p1_desc: "منصة تعليمية قمت بإنشائها لمساعدة طلاب الثانوية العامة.",
+
+                p2_title: "الموقع الشخصي", 
+                p2_desc: "الموقع اللي بتتصفحه دلوقتي، صممته عشان أعرفكم بيا وبشغلي ببساطة.",
+
+                p3_title: "❄️ شركة دهب للتكييف",
+                p3_desc: "موقع تعريفي قمت بتطويره لشركة تبريد وتكييف لعرض خدماتها ومنتجاتها للعملاء.",
+
                 contact_title: "تواصل <span>معي</span>"
             }
         };
@@ -314,7 +336,6 @@
             const body = document.body;
             const langBtn = document.querySelector('.lang-btn');
 
-            // تغيير اتجاه الصفحة
             if (currentLang === 'ar') {
                 body.classList.remove('ltr');
                 body.classList.add('rtl');
@@ -325,7 +346,6 @@
                 langBtn.textContent = translations.en.btn_lang;
             }
 
-            // تحديث النصوص
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (translations[currentLang][key]) {
@@ -333,7 +353,6 @@
                 }
             });
 
-            // إعادة تشغيل الكتابة
             startTyping(translations[currentLang].type_text);
         }
 
@@ -348,10 +367,9 @@
                 } else {
                     clearInterval(typeInterval);
                 }
-            }, 30); // سرعة الكتابة
+            }, 30);
         }
 
-        // عند تحميل الصفحة
         window.onload = function() {
             startTyping(translations.en.type_text);
         };
